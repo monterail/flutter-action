@@ -1,0 +1,13 @@
+name: 'Install Flutter SDK'
+description: 'Make dart and flutter CLI available for your action'
+author: 'Marcin Wróblewski'
+inputs:
+  channel:
+    description: 'Desired Flutter channel'
+    required: false
+    default: 'stable'
+runs:
+  using: 'composite'
+  steps:
+    - run: chmod +x $GITHUB_ACTION_PATH/install-flutter-sdk.sh
+    - run: $GITHUB_ACTION_PATH/install-flutter-sdk.sh -c ${{ inputs.channel }}

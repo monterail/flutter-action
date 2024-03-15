@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-install:
+
+    runs-on: ${{ matrix.operating-system }}
+      strategy:
+        matrix:
+          operating-system: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ./
+      with: stable
+    - run: flutter --version

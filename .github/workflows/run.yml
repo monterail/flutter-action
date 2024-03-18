@@ -9,14 +9,12 @@ on:
 
 jobs:
   test-install:
-
     runs-on: ${{ matrix.operating-system }}
-      strategy:
-        matrix:
-          operating-system: [ubuntu-latest, windows-latest, macos-latest]
-
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
     steps:
     - uses: actions/checkout@v4
     - uses: ./
-      with: stable
     - run: flutter --version
+    - run: dart pub global activate git_helper && git_helper -h
